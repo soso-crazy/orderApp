@@ -1,0 +1,32 @@
+.detail{
+    .tab-bar{
+        font-size: px2rem(16px);
+        display: flex;
+        margin-top: px2rem(64px); // NavHeader的高度
+        border-bottom: 1px solid #f0f0f0;
+    }
+    .tab-item{
+        flex: 1;
+        text-align: center;
+        height: px2rem(45px);
+        line-height: px2rem(45px);
+        color: #666;
+        text-decoration: none;
+        position: relative; // 给tab-item添加伪类
+        &.active{
+            &::after{
+                position: absolute;
+                content: '';
+                display: block;
+                height: px2rem(4px);
+                width: px2rem(60px);
+                bottom: 0;
+                left: 50%;
+                // 水平居中
+                -webkit-transform: translateX(-50%);
+                transform: translateX(-50%);
+                background-color: #ffd161;
+            }
+        }
+    }
+}

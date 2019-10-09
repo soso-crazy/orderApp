@@ -1,0 +1,117 @@
+.my{
+    .header{
+        width: 100%;
+        height: px2rem(160px);
+        background-image: url('./img/header.png');
+        background-size: cover;
+        overflow: hidden; // 设置具有BFC特性的元素（BFC只对其子元素生效），BFC作用：解决margin合并问题
+    }
+    .avatar{
+        width: px2rem(72px);
+        height: px2rem(72px);
+        display: block;
+        margin: 0 auto;
+        // 第一个子元素设置上边距margin-top，而它的父元素没有border或padding的话，margin会覆盖父元素的margin
+        margin-top: px2rem(25px);
+        border:px2rem(3px) solid rgba(255,255,255,0.4);
+        border-radius: 50%;
+    }
+    .nickname{
+        color: #333;
+        font-size: px2rem(16px);
+        margin-top: px2rem(15px);
+        text-align: center;
+    }
+    .content{
+        // iPhone 6物理屏幕高度667-header的高度160px
+        min-height: px2rem(507px);
+        background-color: #eee;
+    }
+    .items{
+        border-bottom: px2rem(10px) solid #eee;
+        background-color: #fff;
+        li{
+            position: relative;
+            height: px2rem(45px);
+            line-height: px2rem(45px);
+            font-size: px2rem(14px);
+            margin-left: px2rem(15px);
+            padding-left: px2rem(26px);
+            // 最后一个li元素不需要border-bottom
+            border-bottom: 1px solid #e4e4e4;
+            &:last-child{
+                border: none;
+            }
+            // 使用伪类添加小图标
+            &::before{
+                content: '';
+                display: block;
+                width: px2rem(16px);
+                height: px2rem(16px);
+                position: absolute;
+                background-size: cover;
+                left: 1px;
+                // 设置图标水平垂直居中
+                top: 50%;
+                transform: translateY(-50%);
+                -webkit-transform: translateY(-50%);
+            }
+            // 使用伪类添加右边的箭头
+            &::after{
+                content: '>';
+                display: block;
+                width: px2rem(16px);
+                height: px2rem(16px);
+                color: #aaa;
+                position: absolute;
+                top: 0;
+                right: px2rem(9px);
+            }
+        }
+        .address{
+            // 为li之前的伪类添加图标图片
+            &::before{
+                background-image: url('./img/address.png');
+            }
+        }
+        .money{
+            &::before{
+                background-image: url('./img/money.png');
+            }
+        }
+        .email{
+            &::before{
+                background-image: url('./img/email.png');
+            }
+        }
+        .question{
+            &::before{
+                background-image: url('./img/question.png');
+            }
+        }
+    }
+    .tel{
+        font-size: px2rem(15px);
+        color: #ffb000;
+        text-align: center;
+        height: px2rem(46px);
+        line-height: px2rem(46px);
+        background-color: #fff;
+    }
+    .time{
+        color: #aaa;
+        font-size: px2rem(14px);
+        text-align: center;
+        margin-top: px2rem(13px);
+    }
+}
+
+/*原理：margin折叠
+所有毗邻的两个或更多盒元素的margin将会合并为一个margin共享之。毗邻的定义为：同级或者嵌套的盒元素，并且它们之间没有非空内容、Padding或Border分隔。
+因为嵌套也属于毗邻，所以子元素没有遇到父元素的border或者padding时，在样式表中优先级更高子元素的margin会覆盖外层父元素定义的margin。
+解决办法：
+1、父元素或者子元素使用浮动或者绝对定位。
+2、父级设置overflow:hidden
+3、父级设置padding（破坏非空白的折叠条件）
+4、父级设置border
+*/

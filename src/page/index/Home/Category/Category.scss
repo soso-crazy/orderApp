@@ -1,0 +1,20 @@
+.category-content{
+    display: flex;
+    flex-wrap: wrap;
+    padding-bottom: px2rem(10px);
+    .category-item{
+        width: 25%;
+        padding-top: px2rem(14px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-size: px2rem(13px);
+    }
+    .item-icon{
+        width: px2rem(47px);
+    }
+    .item-name{
+        margin-top: px2rem(14px);
+    }
+}

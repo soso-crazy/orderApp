@@ -1,0 +1,16 @@
+// presets属性告诉Babel要转换的源码使用了哪些新的语法特性,优先级是从下往上
+{
+    "presets": [
+        "es2015",
+        "react",
+        "stage-0"
+    ],
+    "plugins": [
+        ["transform-runtime",{
+            "helpers":false, // 是否切换相应模块名的babel帮助程序
+            "polyfill":false,
+            "regenerator":true, // 切换是否将生成器函数转换为使用不污染全局范围的再生器运行时。
+            "moduleName":"babel-runtime"
+        }]
+    ]
+}

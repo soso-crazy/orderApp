@@ -1,0 +1,174 @@
+.header{
+    margin-top: px2rem(64px); // 因为NavHeader是固定在顶部，避免被遮挡，需要margin-top:NavHeader的高度
+    background-color: #fff;
+    width: 100%;
+    .header-top{
+        position: fixed;
+        width: 100%;
+        display: flex;
+        height: px2rem(40px);
+        align-items: center;
+        border-bottom: 1px solid #e4e4e4;
+        background-color: #fff;
+        z-index: 4;
+    }
+    .item{
+        position: relative;
+        font-size: px2rem(13px);
+        color: #2f2f2f;
+        flex: 1;
+        border-right: 1.5px solid #e4e4e4;
+        text-align: center;
+        // 最后一个元素不需要border
+        &:last-child{
+            border: none;
+        }
+        // 使用伪类添加箭头
+        &.cate::after,&.type::after{
+            border: 1px solid #666;
+            content: '';
+            display: inline-block;
+            width: px2rem(5px);
+            height: px2rem(5px);
+            margin: 0 0 px2rem(2px) px2rem(6px);
+            border-width: 0 1px 1px 0;
+            transform:  rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            // 箭头旋转有过渡效果
+            transition: all 0.3s;
+            -webkit-transition: all 0.3s;
+        }
+        &.filter::after{
+            width: px2rem(12px);
+            height: px2rem(12px);
+            content: '';
+            display: inline-block;
+            background-image: url('./img/filter.png');
+            background-size: cover;
+            transform: rotate(0);
+        }
+        // 选中分类选项或者综合排序的tab，有旋转效果
+        &.current:not(.filter)::after{
+            transform:  rotate(225deg);
+            -webkit-transform: rotate(225deg);
+        }
+        // 伪类实现点击选中选项，底部出现倒三角，类似于对话框泡
+        &::before{
+            display: none;
+            content: '';
+            position: absolute; // 相对于被点击的选项元素.item
+            top: px2rem(23px);
+            left: 49%;
+            width: px2rem(7px);
+            height: px2rem(7px);
+            background-color: #fff;
+            border: 1.5px solid #e4e4e4;
+            border-width: 0 1.5px 1.5px 0;
+            transform:  rotate(225deg);
+            -webkit-transform: rotate(225deg);
+        }
+        // 选中的选项底部出现倒三角，类似于对话框泡
+        &.current::before{ // 一定要用::before,因为伪类是用::before实现倒三角
+            display: block;
+        }
+        &.cate:before { // cate选项的倒三角的背景颜色
+            background-color: #efefef;
+        }
+    }
+    .panel{
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        top: px2rem(105px);
+        bottom: 0;
+        right: 0;
+        background-color: rgba(0,0,0,0.7);
+        display: none; // 默认不显示
+        &.show{ // 当panel同时具有show的className才显示
+            display: block;
+        }
+        .pannel-inner{
+            height: px2rem(300px);
+            overflow-x: hidden;
+            overflow-y: auto;
+            background-color: #fff;
+            > ul{ // 父元素为.pannel-inner的所有ul
+                background-color: #fff;
+                display: none; // 默认情况下，不点击tab选项时面板内容是不显示的
+                &.current{
+                    display: block;
+                }
+            }
+        }
+        .item-title{ // cate-content部分
+            position: relative;
+            font-size: px2rem(12px);
+            height: px2rem(30px);
+            background-color: #efefef;
+            line-height: px2rem(30px);
+            color: #666;
+            padding-left: px2rem(13px);
+            &::before{ // 使用伪类实现黄色竖线
+                content: '';
+                position: absolute;
+                display: block;
+                margin-left: px2rem(-13px);
+                margin-top: px2rem(8px);
+                width: px2rem(2px);
+                height: px2rem(16px);
+                background-color: #ffd161;
+            }
+        }
+        .item-content{
+            min-height: px2rem(20px);
+        }
+        .cate-box{
+            float: left;
+            width: 33.33%;
+            font-size: px2rem(12px);
+            padding: px2rem(10px);
+            box-sizing: border-box;
+        }
+        .cate-box-inner{
+            border: 1px solid #c4c4c4;
+            text-align: center;
+            color: #666;
+            height: px2rem(37px);
+            line-height: px2rem(37px);
+            position: relative;
+            &.active {
+                background-color: #fffbf1;
+                color: #ffb000;
+                border-color: #ffb000;
+            }
+        }
+        .has-icon img{
+            display: block;
+            width: px2rem(18px);
+            height: px2rem(18px);
+            position: absolute;
+            top: px2rem(10px);
+            left: px2rem(4px);
+        }
+        .type-item{
+            border-bottom: 1px solid #e9e9e9;
+            height: px2rem(44px);
+            line-height: px2rem(44px);
+            font-size: px2rem(13px);
+            color: #666;
+            padding-left: px2rem(20px);
+            &.active{
+                color: #ffd161;
+            }
+        }
+        .filter-item{
+            margin: px2rem(5px) 0 px2rem(10px);
+            padding: 0 px2rem(5px);
+        }
+        .filter-title{
+            color: #999;
+            font-size: px2rem(12px);
+            padding-left: px2rem(14px);
+        }
+    }
+}

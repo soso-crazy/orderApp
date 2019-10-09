@@ -1,0 +1,45 @@
+
+
+// 清除浮动
+.clearfix::after{
+    content: '';
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+}
+
+// 解决边框1px问题:
+// 原理是把原先元素的 border 去掉，然后利用 :before 或者 :after 重做 border ，并 transform 的 scale 缩小一半，原先的元素相对定位，新做的 border 绝对定位。
+.scale-1px{
+    position: relative;
+    border: none;
+}
+
+.scale-1px::after{
+    content: '';
+    position: absolute;
+    height: px2rem(1px);
+    width: 100%;
+    bottom: 0;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+// 文字溢出隐藏的元素一定要设置width和height
+.one-line{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// 文字两行溢出隐藏
+.two-line{
+    display: -webkit-box;
+    -webkit-line-clamp: 2; // 超过两行溢出隐藏
+    -webkit-box-orient: vertical; // 垂直布局方式
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

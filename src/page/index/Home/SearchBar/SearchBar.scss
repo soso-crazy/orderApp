@@ -1,0 +1,71 @@
+.search-bar{
+    width: 100%;
+    height: px2rem(40px);
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: px2rem(14px);
+    .bar-location{
+        margin-right: px2rem(20px);
+        border-radius: px2rem(13px);
+        background-color: rgba($color: #000000, $alpha: 0.33);
+        height: px2rem(28px);
+        width: px2rem(96px);
+    }
+    // 图标和左边字是一行排列，使用display:inline-block
+    .location-icon{
+        display: inline-block;
+        width: px2rem(15px);
+        height: px2rem(20px);
+        vertical-align: px2rem(8px);
+        margin-left: px2rem(8px);
+        background-image: url('./img/locationIcon.png');
+        background-size: cover;
+    }
+    .location-text{
+        position: relative;
+        display: inline-block;
+        font-size: px2rem(14px);
+        color: #fff;
+        vertical-align: px2rem(12px);
+        margin-left: px2rem(8px);
+        margin-right: px2rem(19px);
+        &::after{
+            content: '';
+            display: block;
+            position: absolute;
+            right: px2rem(-15px);
+            top: px2rem(-1px);
+            width: px2rem(14px);
+            height: px2rem(14px);
+            background-image: url('./img/arrowIcon.png');
+            background-size: cover;
+        }
+    }
+    .search-btn{
+        position: relative;
+        width: px2rem(170px);
+        height: px2rem(30px);
+        background-color: #fff;
+        border-radius: px2rem(20px);
+        &::before{
+            position: absolute;
+            content: '';
+            width: px2rem(14px);
+            height: px2rem(14px);
+            background-image: url('./img/searchIcon.png');
+            background-size: cover;
+            left: px2rem(7px);
+            top: px2rem(8px);
+        }
+    }
+    // 如果没有同名的class，尽量不要层层嵌套，加速浏览器的渲染
+    .place-holder{
+        color: #a9a9a9;
+        font-size: px2rem(14px);
+        height: 100%;
+        line-height: px2rem(30px);
+        margin-left: px2rem(28px);
+    }
+}

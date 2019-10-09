@@ -1,0 +1,6 @@
+// 定义px转rem的函数
+@function px2rem($px){
+  // 基于iPhone 6的宽度
+  $rem:37.5px;
+  @return ($px/$rem)+rem; // rem是单位
+}
